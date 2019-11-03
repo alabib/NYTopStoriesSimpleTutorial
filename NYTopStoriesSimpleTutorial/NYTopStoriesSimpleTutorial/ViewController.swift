@@ -12,9 +12,26 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        fetch()
     }
 
+    
+    func fetch() {
+        let serverManager = ServerManager()
+        serverManager.getTopStories()
+        serverManager.didFinish =
+            { json in
+                guard let obj = json as? TopStories else {
+                  return
+                }
+                print(obj)
+        }
+        serverManager.didFinishWithError =
+            { webserviceError, error in
+                print("\n\n===========Error===========")
+        }
+        
+    }
 
 }
 
