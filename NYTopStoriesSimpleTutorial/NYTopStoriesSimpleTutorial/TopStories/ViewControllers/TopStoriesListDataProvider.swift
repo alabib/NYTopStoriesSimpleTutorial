@@ -22,7 +22,11 @@ class TopStoriesListDataProvider: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.nyDequeueReusableCell(for: indexPath, cellType: StoriesTableViewCell.self)
+//        let cell = tableView.nyDequeueReusableCell(for: indexPath, cellType: StoriesTableViewCell.self)
+        
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+        
+        cell.textLabel?.text = self.dataManager.story(at: indexPath.row)?.title
         
         return cell
     }
