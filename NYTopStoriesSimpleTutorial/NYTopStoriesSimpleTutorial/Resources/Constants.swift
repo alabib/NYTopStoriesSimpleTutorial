@@ -2,8 +2,8 @@
 //  Constants.swift
 //  NYTopStoriesSimpleTutorial
 //
-//  Created by Labib, Ahmed (148) on 03.11.19.
-//  Copyright © 2019 Labib, Ahmed. All rights reserved.
+//  Created by Ahmed Labib on 03.11.19.
+//  Copyright © 2019 Ahmed Labib. All rights reserved.
 //
 
 import Foundation

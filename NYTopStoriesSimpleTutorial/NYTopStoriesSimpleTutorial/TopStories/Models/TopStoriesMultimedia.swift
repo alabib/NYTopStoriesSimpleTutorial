@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TopStoriesMultimedia: Codable {
+struct TopStoriesMultimedia: Codable, Equatable {
     
 	var caption : String
 	var copyright : String

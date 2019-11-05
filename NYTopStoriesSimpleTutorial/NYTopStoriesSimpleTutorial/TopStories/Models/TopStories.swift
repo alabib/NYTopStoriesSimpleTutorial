@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TopStories {
+struct TopStories: Equatable {
     
     var copyright : String
     var lastUpdated : String

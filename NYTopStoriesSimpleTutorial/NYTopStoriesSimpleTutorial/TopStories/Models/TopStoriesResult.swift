@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TopStoriesResult {
+struct TopStoriesResult: Equatable {
     
     var abstractField : String
     var byline : String
