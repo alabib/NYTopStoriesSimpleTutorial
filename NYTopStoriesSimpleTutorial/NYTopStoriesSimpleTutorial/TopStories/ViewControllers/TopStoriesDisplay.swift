@@ -10,5 +10,5 @@ import Foundation
 
 protocol TopStoriesDisplay: class {
     
-    func get(manager: TopStoriesDataManageable)
+    func setTableDelegateAndDatasource(with listDataProvider:TopStoriesListDataProvider)
 }
