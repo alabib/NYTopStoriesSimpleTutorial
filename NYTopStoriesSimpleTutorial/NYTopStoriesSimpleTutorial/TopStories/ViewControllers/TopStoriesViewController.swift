@@ -17,6 +17,8 @@ class TopStoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.nyRegisterNib(cellType: StoriesTableViewCell.self)
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         self.presenter = TopStoriesPresenter(for: self)
     }
     
