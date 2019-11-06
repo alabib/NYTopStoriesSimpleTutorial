@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias DownloadImageCompletion = ((UIImage?, Bool) -> Void)
+
 public protocol Disposable {
     func dispose()
 }
@@ -19,7 +21,7 @@ extension URLSessionDataTask: Disposable {
 }
 
 public class ImageDownloader {
-    func downloadImageWith(url: URL, placeholder: UIImage?, imageView: UIImageView) -> Disposable {
+    func downloadImageWith(url: URL, placeholder: UIImage?, imageView: UIImageView, completion: DownloadImageCompletion? = nil) -> Disposable {
         imageView.image = placeholder
         let dataTask = URLSession.shared.dataTask(with: url) { (data, respnse, error) in
             if
@@ -28,7 +30,9 @@ public class ImageDownloader {
                 DispatchQueue.main.async {
                     imageView.image = image
                 }
+                completion?(image, true)
             }
+            completion?(nil, false)
         }
         dataTask.resume()
         return dataTask

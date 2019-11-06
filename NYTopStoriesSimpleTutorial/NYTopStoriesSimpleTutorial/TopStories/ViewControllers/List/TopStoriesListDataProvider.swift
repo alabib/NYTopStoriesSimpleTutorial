@@ -8,12 +8,17 @@
 
 import UIKit
 
+typealias TopStoriesListOnSelectionHandler = ((Int) -> Void)
+
 class TopStoriesListDataProvider: NSObject, UITableViewDataSource {
     
     private let dataManager: TopStoriesDataManageable
+    private let onSelection: TopStoriesListOnSelectionHandler?
     
-    init(with dataManager: TopStoriesDataManageable) {
+    init(dataManager: TopStoriesDataManageable,
+         onSelection: TopStoriesListOnSelectionHandler? = nil) {
         self.dataManager = dataManager
+        self.onSelection = onSelection
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,6 +44,9 @@ class TopStoriesListDataProvider: NSObject, UITableViewDataSource {
 extension TopStoriesListDataProvider: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("")
+        guard let onSelectionClosure = self.onSelection else {
+            return
+        }
+        onSelectionClosure(indexPath.row)
     }
 }

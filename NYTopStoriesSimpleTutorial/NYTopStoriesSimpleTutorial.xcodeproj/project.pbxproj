@@ -24,6 +24,12 @@
 		8C50520A23719EF40097E9A2 /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50520923719EF40097E9A2 /* StoriesTableViewCell.swift */; };
 		8C50520C23719F3F0097E9A2 /* StoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C50520B23719F3F0097E9A2 /* StoriesTableViewCell.xib */; };
 		8C50520F2371A06E0097E9A2 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C50520E2371A06E0097E9A2 /* Reusable.swift */; };
+		8C58D234237351DC00AF5E84 /* UIStoryboard+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D233237351DC00AF5E84 /* UIStoryboard+Creation.swift */; };
+		8C58D2362373561800AF5E84 /* TopStoriesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D2352373561800AF5E84 /* TopStoriesDetailsViewController.swift */; };
+		8C58D2382373566100AF5E84 /* TopStoriesDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D2372373566100AF5E84 /* TopStoriesDetailsPresenter.swift */; };
+		8C58D23B237356B300AF5E84 /* TopStoriesDetailsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23A237356B300AF5E84 /* TopStoriesDetailsDisplay.swift */; };
+		8C58D23D23735A1200AF5E84 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23C23735A1200AF5E84 /* Shadows.swift */; };
+		8C58D24023737BEC00AF5E84 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23F23737BEC00AF5E84 /* LoadingIndicator.swift */; };
 		8C5C6EB82372100500438F00 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C6EB72372100500438F00 /* ImageDownloader.swift */; };
 		8CBFFEC7236F17BE0095B73A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFFEC6236F17BE0095B73A /* AppDelegate.swift */; };
 		8CBFFEC9236F17BE0095B73A /* TopStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFFEC8236F17BE0095B73A /* TopStoriesViewController.swift */; };
@@ -68,6 +74,12 @@
 		8C50520923719EF40097E9A2 /* StoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTableViewCell.swift; sourceTree = "<group>"; };
 		8C50520B23719F3F0097E9A2 /* StoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoriesTableViewCell.xib; sourceTree = "<group>"; };
 		8C50520E2371A06E0097E9A2 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		8C58D233237351DC00AF5E84 /* UIStoryboard+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Creation.swift"; sourceTree = "<group>"; };
+		8C58D2352373561800AF5E84 /* TopStoriesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesDetailsViewController.swift; sourceTree = "<group>"; };
+		8C58D2372373566100AF5E84 /* TopStoriesDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesDetailsPresenter.swift; sourceTree = "<group>"; };
+		8C58D23A237356B300AF5E84 /* TopStoriesDetailsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesDetailsDisplay.swift; sourceTree = "<group>"; };
+		8C58D23C23735A1200AF5E84 /* Shadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
+		8C58D23F23737BEC00AF5E84 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		8C5C6EB72372100500438F00 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		8CBFFEC3236F17BE0095B73A /* NYTopStoriesSimpleTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTopStoriesSimpleTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBFFEC6236F17BE0095B73A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +163,7 @@
 		8C387449236F3CE100131D3A /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				8C58D2372373566100AF5E84 /* TopStoriesDetailsPresenter.swift */,
 				8C3184822370D42900FD35EE /* TopStoriesPresenter.swift */,
 			);
 			path = Presenters;
@@ -159,9 +172,8 @@
 		8C38744A236F3CE900131D3A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8C5052042371963C0097E9A2 /* TopStoriesListDataProvider.swift */,
-				8CBFFEC8236F17BE0095B73A /* TopStoriesViewController.swift */,
-				8C3184842370D9DF00FD35EE /* TopStoriesDisplay.swift */,
+				8C58D23E23735FB100AF5E84 /* Details */,
+				8C58D2392373569200AF5E84 /* List */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -187,14 +199,36 @@
 			isa = PBXGroup;
 			children = (
 				8C50520E2371A06E0097E9A2 /* Reusable.swift */,
+				8C58D233237351DC00AF5E84 /* UIStoryboard+Creation.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8C58D2392373569200AF5E84 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				8C3184842370D9DF00FD35EE /* TopStoriesDisplay.swift */,
+				8C5052042371963C0097E9A2 /* TopStoriesListDataProvider.swift */,
+				8CBFFEC8236F17BE0095B73A /* TopStoriesViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		8C58D23E23735FB100AF5E84 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				8C58D23A237356B300AF5E84 /* TopStoriesDetailsDisplay.swift */,
+				8C58D2352373561800AF5E84 /* TopStoriesDetailsViewController.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		8C5C6EB623720FE900438F00 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				8C5C6EB72372100500438F00 /* ImageDownloader.swift */,
+				8C58D23C23735A1200AF5E84 /* Shadows.swift */,
+				8C58D23F23737BEC00AF5E84 /* LoadingIndicator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -396,12 +430,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C58D24023737BEC00AF5E84 /* LoadingIndicator.swift in Sources */,
 				8C50520F2371A06E0097E9A2 /* Reusable.swift in Sources */,
+				8C58D2382373566100AF5E84 /* TopStoriesDetailsPresenter.swift in Sources */,
+				8C58D2362373561800AF5E84 /* TopStoriesDetailsViewController.swift in Sources */,
 				8C387450236F3DD700131D3A /* TopStoriesMultimedia.swift in Sources */,
 				8C5C6EB82372100500438F00 /* ImageDownloader.swift in Sources */,
 				8C387453236F409D00131D3A /* ServerManagerExtensions.swift in Sources */,
 				8C5052052371963C0097E9A2 /* TopStoriesListDataProvider.swift in Sources */,
 				8CBFFEC9236F17BE0095B73A /* TopStoriesViewController.swift in Sources */,
+				8C58D234237351DC00AF5E84 /* UIStoryboard+Creation.swift in Sources */,
 				8C38744F236F3DD700131D3A /* TopStoriesResult.swift in Sources */,
 				8C3184852370D9DF00FD35EE /* TopStoriesDisplay.swift in Sources */,
 				8C387458236F4EE800131D3A /* ServerManagerCalls.swift in Sources */,
@@ -410,7 +448,9 @@
 				8C3184832370D42900FD35EE /* TopStoriesPresenter.swift in Sources */,
 				8CBFFEC7236F17BE0095B73A /* AppDelegate.swift in Sources */,
 				8C38744E236F3DD700131D3A /* TopStories.swift in Sources */,
+				8C58D23B237356B300AF5E84 /* TopStoriesDetailsDisplay.swift in Sources */,
 				8C387456236F410600131D3A /* Constants.swift in Sources */,
+				8C58D23D23735A1200AF5E84 /* Shadows.swift in Sources */,
 				8C50520A23719EF40097E9A2 /* StoriesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

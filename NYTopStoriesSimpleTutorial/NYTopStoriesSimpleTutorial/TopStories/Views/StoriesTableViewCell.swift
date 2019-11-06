@@ -20,7 +20,10 @@ class StoriesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 4
+        containerView.layer.borderColor = UIColor.black.cgColor
+        containerView.layer.borderWidth = 0.7
         self.storyImageView.layer.cornerRadius = 4
+        Shadows.setupShadowFor(containerView)
         
     }
     
@@ -34,19 +37,11 @@ class StoriesTableViewCell: UITableViewCell {
         titleLabel.text = story.title
         authorLabel.text = story.byline
         guard
-            let urlString = story.multimedia.first(where: {$0.format == ImageFormat.standard.rawValue})?.url,
+            let urlString = story.multimedia.first(where: { $0.formatType == .standard })?.url,
             let imageURL = URL(string: urlString) else {
             return
         }
         diposable = ImageDownloader().downloadImageWith(url: imageURL, placeholder: UIImage(named: "placeholder"), imageView: storyImageView)
     }
     
-}
-
-enum ImageFormat: String {
-    case standard = "Standard Thumbnail"
-    case thumbLarge = "thumbLarge"
-    case normal = "Normal"
-    case medium = "mediumThreeByTwo210"
-    case superJumbo = "superJumbo"
 }

@@ -12,14 +12,23 @@ class TopStoriesViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    private var presenter: TopStoriesPresenter!
+    private var presenter: TopStoriesPresenter?
+    
+    private let loadingIndicator = LoadingIndicator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.nyRegisterNib(cellType: StoriesTableViewCell.self)
+        setupUI()
+        presenter = TopStoriesPresenter(for: self)
+    }
+    
+    private func setupUI() {
+        navigationController?.navigationBar.prefersLargeTitles = true
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.rowHeight = UITableView.automaticDimension
-        self.presenter = TopStoriesPresenter(for: self)
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        Shadows.setupShadowFor(navigationBar)
     }
     
     // MARK: - Cells Animation Method
@@ -51,10 +60,30 @@ class TopStoriesViewController: UIViewController {
 }
 
 extension TopStoriesViewController: TopStoriesDisplay {
+    
+    func startLoader() {
+        loadingIndicator.showLoading(onView: self.view)
+    }
+    
+    func stopLoader() {
+        loadingIndicator.removeLoading()
+    }
+    
+    
+    func setNavigationTitle(_ title: String) {
+        self.title = title
+    }
+    
     func setTableDelegateAndDatasource(with listDataProvider: TopStoriesListDataProvider) {
         tableView.delegate = listDataProvider
         tableView.dataSource = listDataProvider
         animateTable()
+    }
+    
+    func navigateToDetails(with story: TopStoriesResult) {
+        let detailsViewController = UIStoryboard.makeViewController(ofType: TopStoriesDetailsViewController.self, storyBoardName: Constants.StoryboardNames.main)
+        detailsViewController.story = story
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
 }

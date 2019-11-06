@@ -19,14 +19,17 @@ class TopStoriesPresenter {
          serverManager: ServerManager = ServerManager()) {
         self.display = display
         self.serverManager = serverManager
+        self.display?.setNavigationTitle("Top Stories")
         fetchTopStories()
     }
     
     
     private func fetchTopStories() {
+        self.display?.startLoader()
         serverManager.getTopStories()
         serverManager.didFinish =
             { [weak self] json in
+                self?.display?.stopLoader()
                 guard let obj = json as? TopStories else {
                     return
                 }
@@ -34,7 +37,8 @@ class TopStoriesPresenter {
                 
         }
         serverManager.didFinishWithError =
-            { webserviceError, error in
+            { [weak self] webserviceError, error in
+                self?.display?.stopLoader()
                 print("\n\n===========Error===========")
         }
         
@@ -53,7 +57,14 @@ class TopStoriesPresenter {
             return
         }
         
-        listDataProvider = TopStoriesListDataProvider(with: dataManager)
+        listDataProvider = TopStoriesListDataProvider(dataManager: dataManager, onSelection: { [weak self] (index) in
+            
+            guard let story = dataManager.story(at: index) else {
+                return
+            }
+            
+            self?.display?.navigateToDetails(with: story)
+        })
         
         guard let listDataProvider = listDataProvider else {
             return

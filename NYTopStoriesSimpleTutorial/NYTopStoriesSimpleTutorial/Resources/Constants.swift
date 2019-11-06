@@ -19,4 +19,8 @@ enum Constants {
         static let name = "api-key"
         static let value = "uJTj6sJKqo0KVHZ9ctcYcxUIumM1XVZ8"
     }
+    
+    enum StoryboardNames {
+        static let main = "Main"
+    }
 }
