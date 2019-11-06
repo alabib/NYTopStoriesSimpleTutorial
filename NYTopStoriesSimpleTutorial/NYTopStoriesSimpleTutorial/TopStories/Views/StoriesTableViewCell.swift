@@ -30,7 +30,7 @@ class StoriesTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         diposable?.dispose()
-        self.storyImageView.image = UIImage(named: "placeholder")
+        self.storyImageView.image = Asset.placeholder.image
     }
     
     func configure(with story: TopStoriesResult) {
@@ -41,7 +41,7 @@ class StoriesTableViewCell: UITableViewCell {
             let imageURL = URL(string: urlString) else {
             return
         }
-        diposable = ImageDownloader().downloadImageWith(url: imageURL, placeholder: UIImage(named: "placeholder"), imageView: storyImageView)
+        diposable = ImageDownloader().downloadImageWith(url: imageURL, placeholder:Asset.placeholder.image, imageView: storyImageView)
     }
     
 }

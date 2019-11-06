@@ -31,6 +31,7 @@
 		8C58D23D23735A1200AF5E84 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23C23735A1200AF5E84 /* Shadows.swift */; };
 		8C58D24023737BEC00AF5E84 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23F23737BEC00AF5E84 /* LoadingIndicator.swift */; };
 		8C58D2432373831400AF5E84 /* StoryBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D2422373831400AF5E84 /* StoryBrowserViewController.swift */; };
+		8C58D24523738BC400AF5E84 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D24423738BC400AF5E84 /* Assets.swift */; };
 		8C5C6EB82372100500438F00 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C6EB72372100500438F00 /* ImageDownloader.swift */; };
 		8CBFFEC7236F17BE0095B73A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFFEC6236F17BE0095B73A /* AppDelegate.swift */; };
 		8CBFFEC9236F17BE0095B73A /* TopStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFFEC8236F17BE0095B73A /* TopStoriesViewController.swift */; };
@@ -82,6 +83,7 @@
 		8C58D23C23735A1200AF5E84 /* Shadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
 		8C58D23F23737BEC00AF5E84 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		8C58D2422373831400AF5E84 /* StoryBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBrowserViewController.swift; sourceTree = "<group>"; };
+		8C58D24423738BC400AF5E84 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		8C5C6EB72372100500438F00 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		8CBFFEC3236F17BE0095B73A /* NYTopStoriesSimpleTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTopStoriesSimpleTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBFFEC6236F17BE0095B73A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		8C387454236F40F400131D3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8C58D24423738BC400AF5E84 /* Assets.swift */,
 				8C387455236F410600131D3A /* Constants.swift */,
 			);
 			path = Resources;
@@ -443,6 +446,7 @@
 			files = (
 				8C58D24023737BEC00AF5E84 /* LoadingIndicator.swift in Sources */,
 				8C50520F2371A06E0097E9A2 /* Reusable.swift in Sources */,
+				8C58D24523738BC400AF5E84 /* Assets.swift in Sources */,
 				8C58D2382373566100AF5E84 /* TopStoriesDetailsPresenter.swift in Sources */,
 				8C58D2362373561800AF5E84 /* TopStoriesDetailsViewController.swift in Sources */,
 				8C387450236F3DD700131D3A /* TopStoriesMultimedia.swift in Sources */,

@@ -61,7 +61,7 @@ extension TopStoriesDetailsViewController: TopStoriesDetailsDisplay {
     }
     
     func setImage(with url: URL) {
-        _ = ImageDownloader().downloadImageWith(url: url, placeholder: UIImage(named: "placeholder"), imageView: storyImageView, completion: { [unowned self] image, _ in
+        _ = ImageDownloader().downloadImageWith(url: url, placeholder: Asset.placeholder.image, imageView: storyImageView, completion: { [unowned self] image, _ in
             
             guard let image = image else {
                 return
