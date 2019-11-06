@@ -32,9 +32,19 @@ class TopStoriesDetailsViewController: UIViewController {
     }
     
     private func setupUI() {
+        seeMoreButton.setTitle("See more", for: .normal)
         seeMoreButton.layer.cornerRadius = 8
         Shadows.setupShadowFor(seeMoreContainerView)
         Shadows.setupShadowFor(seeMoreButton)
+    }
+    
+    @IBAction func seeMoreButtonHandler(_ sender: Any) {
+        guard let urlString = story?.url,
+        let url = URL(string: urlString) else {
+            return
+        }
+        let browserViewController = StoryBrowserViewController(with: url)
+        self.navigationController?.pushViewController(browserViewController, animated: true)
     }
     
     

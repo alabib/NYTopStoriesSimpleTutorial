@@ -30,6 +30,7 @@
 		8C58D23B237356B300AF5E84 /* TopStoriesDetailsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23A237356B300AF5E84 /* TopStoriesDetailsDisplay.swift */; };
 		8C58D23D23735A1200AF5E84 /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23C23735A1200AF5E84 /* Shadows.swift */; };
 		8C58D24023737BEC00AF5E84 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D23F23737BEC00AF5E84 /* LoadingIndicator.swift */; };
+		8C58D2432373831400AF5E84 /* StoryBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C58D2422373831400AF5E84 /* StoryBrowserViewController.swift */; };
 		8C5C6EB82372100500438F00 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5C6EB72372100500438F00 /* ImageDownloader.swift */; };
 		8CBFFEC7236F17BE0095B73A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFFEC6236F17BE0095B73A /* AppDelegate.swift */; };
 		8CBFFEC9236F17BE0095B73A /* TopStoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBFFEC8236F17BE0095B73A /* TopStoriesViewController.swift */; };
@@ -80,6 +81,7 @@
 		8C58D23A237356B300AF5E84 /* TopStoriesDetailsDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesDetailsDisplay.swift; sourceTree = "<group>"; };
 		8C58D23C23735A1200AF5E84 /* Shadows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
 		8C58D23F23737BEC00AF5E84 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		8C58D2422373831400AF5E84 /* StoryBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBrowserViewController.swift; sourceTree = "<group>"; };
 		8C5C6EB72372100500438F00 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		8CBFFEC3236F17BE0095B73A /* NYTopStoriesSimpleTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTopStoriesSimpleTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBFFEC6236F17BE0095B73A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				8C58D23E23735FB100AF5E84 /* Details */,
 				8C58D2392373569200AF5E84 /* List */,
+				8C58D241237382E400AF5E84 /* WebView */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -221,6 +224,14 @@
 				8C58D2352373561800AF5E84 /* TopStoriesDetailsViewController.swift */,
 			);
 			path = Details;
+			sourceTree = "<group>";
+		};
+		8C58D241237382E400AF5E84 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				8C58D2422373831400AF5E84 /* StoryBrowserViewController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		8C5C6EB623720FE900438F00 /* Utilities */ = {
@@ -440,6 +451,7 @@
 				8C5052052371963C0097E9A2 /* TopStoriesListDataProvider.swift in Sources */,
 				8CBFFEC9236F17BE0095B73A /* TopStoriesViewController.swift in Sources */,
 				8C58D234237351DC00AF5E84 /* UIStoryboard+Creation.swift in Sources */,
+				8C58D2432373831400AF5E84 /* StoryBrowserViewController.swift in Sources */,
 				8C38744F236F3DD700131D3A /* TopStoriesResult.swift in Sources */,
 				8C3184852370D9DF00FD35EE /* TopStoriesDisplay.swift in Sources */,
 				8C387458236F4EE800131D3A /* ServerManagerCalls.swift in Sources */,
