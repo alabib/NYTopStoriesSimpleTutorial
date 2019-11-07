@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import NYTopStoriesSimpleTutorial
 
 class TopStoriesMultimediaTests: XCTestCase {
 

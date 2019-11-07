@@ -45,6 +45,9 @@
 		8CD39E22237499D100BDC044 /* StoryBrowserWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E21237499D100BDC044 /* StoryBrowserWebViewDelegate.swift */; };
 		8CD39E2523749F7300BDC044 /* StoryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E2423749F7300BDC044 /* StoryCellModel.swift */; };
 		8CD39E272374A0D400BDC044 /* StoryCellModelsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E262374A0D400BDC044 /* StoryCellModelsFactory.swift */; };
+		8CD39E2A2374A87000BDC044 /* StoryBrowserPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E292374A87000BDC044 /* StoryBrowserPresenterTests.swift */; };
+		8CD39E2C2374A88200BDC044 /* TopStoriesDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E2B2374A88200BDC044 /* TopStoriesDetailsPresenterTests.swift */; };
+		8CD39E2E2374A89E00BDC044 /* TopStoriesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E2D2374A89E00BDC044 /* TopStoriesPresenterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,9 @@
 		8CD39E21237499D100BDC044 /* StoryBrowserWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBrowserWebViewDelegate.swift; sourceTree = "<group>"; };
 		8CD39E2423749F7300BDC044 /* StoryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellModel.swift; sourceTree = "<group>"; };
 		8CD39E262374A0D400BDC044 /* StoryCellModelsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellModelsFactory.swift; sourceTree = "<group>"; };
+		8CD39E292374A87000BDC044 /* StoryBrowserPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBrowserPresenterTests.swift; sourceTree = "<group>"; };
+		8CD39E2B2374A88200BDC044 /* TopStoriesDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesDetailsPresenterTests.swift; sourceTree = "<group>"; };
+		8CD39E2D2374A89E00BDC044 /* TopStoriesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesPresenterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				8C3184772370D02900FD35EE /* Models */,
+				8CD39E282374A84400BDC044 /* Presenters */,
 			);
 			path = TopStories;
 			sourceTree = "<group>";
@@ -338,6 +345,16 @@
 			path = CellModel;
 			sourceTree = "<group>";
 		};
+		8CD39E282374A84400BDC044 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				8CD39E292374A87000BDC044 /* StoryBrowserPresenterTests.swift */,
+				8CD39E2B2374A88200BDC044 /* TopStoriesDetailsPresenterTests.swift */,
+				8CD39E2D2374A89E00BDC044 /* TopStoriesPresenterTests.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -507,8 +524,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD39E2C2374A88200BDC044 /* TopStoriesDetailsPresenterTests.swift in Sources */,
 				8C31847D2370D1D200FD35EE /* TopStoriesMultimediaTests.swift in Sources */,
 				8C31847F2370D1EC00FD35EE /* TopStoriesResultTests.swift in Sources */,
+				8CD39E2A2374A87000BDC044 /* StoryBrowserPresenterTests.swift in Sources */,
+				8CD39E2E2374A89E00BDC044 /* TopStoriesPresenterTests.swift in Sources */,
 				8C31847B2370D15700FD35EE /* TopStoriesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -43,6 +43,8 @@ class TopStoriesPresenter {
                 self?.createDataManager(with: obj)
                 
         }
+        
+        // TODO: Handle Errors
         serverManager.didFinishWithError =
             { [weak self] webserviceError, error in
                 self?.display?.stopLoader()
