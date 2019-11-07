@@ -9,13 +9,12 @@
 import UIKit
 import WebKit
 
-class StoryBrowserViewController: UIViewController, WKNavigationDelegate {
+class StoryBrowserViewController: UIViewController {
     
-    private let url: URL
+    private var presenter: StoryBrowserPresenter?
     
-    lazy var webView: WKWebView = {
+    private lazy var webView: WKWebView = {
         let webView = WKWebView()
-        webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
@@ -25,15 +24,17 @@ class StoryBrowserViewController: UIViewController, WKNavigationDelegate {
     }
     
     init(with url: URL) {
-        self.url = url
         super.init(nibName: nil, bundle: nil)
+        makePresenter(with: url)
     }
     
+    private func makePresenter(with url: URL) {
+        presenter = StoryBrowserPresenter(for: self,
+                                          url: url)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Browser"
-        updateConstraints()
-        webView.load(URLRequest(url: url))
+        
     }
     
     private func updateConstraints() {
@@ -47,15 +48,24 @@ class StoryBrowserViewController: UIViewController, WKNavigationDelegate {
             ])
     }
     
+}
+
+extension StoryBrowserViewController: StoryBrowserDisplay {
     
-    
-    //MARK:- WKNavigationDelegate
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("Strat to load")
+    func setNavigationTitle(_ title: String) {
+        self.title = title
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("finish to load")
+    func loadWebView(with request: URLRequest) {
+        webView.load(request)
     }
+    
+    func setWebViewDelegate(_ delegate: StoryBrowserWebViewDelegate) {
+        webView.navigationDelegate = delegate
+    }
+    
+    func addUIElements() {
+        updateConstraints()
+    }
+    
 }

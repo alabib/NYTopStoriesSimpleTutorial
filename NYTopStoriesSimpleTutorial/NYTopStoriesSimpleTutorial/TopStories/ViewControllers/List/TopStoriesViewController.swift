@@ -69,7 +69,6 @@ extension TopStoriesViewController: TopStoriesDisplay {
         loadingIndicator.removeLoading()
     }
     
-    
     func setNavigationTitle(_ title: String) {
         self.title = title
     }

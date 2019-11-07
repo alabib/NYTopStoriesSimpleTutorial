@@ -22,6 +22,7 @@ class LoadingIndicator {
         DispatchQueue.main.async {
             spinnerView.addSubview(activityIndicator)
             onView.addSubview(spinnerView)
+            onView.bringSubviewToFront(spinnerView)
         }
         
         spinner = spinnerView

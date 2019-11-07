@@ -14,12 +14,15 @@ class TopStoriesPresenter {
     private weak var display: TopStoriesDisplay?
     private var manager: TopStoriesDataManageable?
     private var listDataProvider: TopStoriesListDataProvider?
+    private let descriptor: TopStoriesDescriptive
     
     init(for display: TopStoriesDisplay,
-         serverManager: ServerManager = ServerManager()) {
+         serverManager: ServerManager = ServerManager(),
+         descriptor: TopStoriesDescriptive = TopStoriesDescriptor()) {
         self.display = display
         self.serverManager = serverManager
-        self.display?.setNavigationTitle("Top Stories")
+        self.descriptor = descriptor
+        self.display?.setNavigationTitle(descriptor.topStroiesListNavigationTitle())
         fetchTopStories()
     }
     

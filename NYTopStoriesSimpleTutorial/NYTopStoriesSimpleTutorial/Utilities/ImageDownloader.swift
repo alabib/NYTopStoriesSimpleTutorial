@@ -20,6 +20,8 @@ extension URLSessionDataTask: Disposable {
     }
 }
 
+// TODO: Add Image Local Caching
+
 public class ImageDownloader {
     func downloadImageWith(url: URL, placeholder: UIImage?, imageView: UIImageView, completion: DownloadImageCompletion? = nil) -> Disposable {
         imageView.image = placeholder
