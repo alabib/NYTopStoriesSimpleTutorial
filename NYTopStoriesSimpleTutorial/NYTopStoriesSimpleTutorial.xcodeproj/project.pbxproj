@@ -43,6 +43,8 @@
 		8CD39E1E2374962200BDC044 /* StoryBrowserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E1D2374962200BDC044 /* StoryBrowserPresenter.swift */; };
 		8CD39E20237496BB00BDC044 /* StoryBrowserDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E1F237496BB00BDC044 /* StoryBrowserDisplay.swift */; };
 		8CD39E22237499D100BDC044 /* StoryBrowserWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E21237499D100BDC044 /* StoryBrowserWebViewDelegate.swift */; };
+		8CD39E2523749F7300BDC044 /* StoryCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E2423749F7300BDC044 /* StoryCellModel.swift */; };
+		8CD39E272374A0D400BDC044 /* StoryCellModelsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD39E262374A0D400BDC044 /* StoryCellModelsFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		8CD39E1D2374962200BDC044 /* StoryBrowserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBrowserPresenter.swift; sourceTree = "<group>"; };
 		8CD39E1F237496BB00BDC044 /* StoryBrowserDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBrowserDisplay.swift; sourceTree = "<group>"; };
 		8CD39E21237499D100BDC044 /* StoryBrowserWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBrowserWebViewDelegate.swift; sourceTree = "<group>"; };
+		8CD39E2423749F7300BDC044 /* StoryCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellModel.swift; sourceTree = "<group>"; };
+		8CD39E262374A0D400BDC044 /* StoryCellModelsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCellModelsFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 		8C387448236F3CD400131D3A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8CD39E2323749F5000BDC044 /* CellModel */,
 				8C38744D236F3DD700131D3A /* TopStoriesMultimedia.swift */,
 				8C38744C236F3DD700131D3A /* TopStoriesResult.swift */,
 				8C38744B236F3DD700131D3A /* TopStories.swift */,
@@ -226,6 +231,7 @@
 				8C3184842370D9DF00FD35EE /* TopStoriesDisplay.swift */,
 				8C5052042371963C0097E9A2 /* TopStoriesListDataProvider.swift */,
 				8CBFFEC8236F17BE0095B73A /* TopStoriesViewController.swift */,
+				8CD39E262374A0D400BDC044 /* StoryCellModelsFactory.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -322,6 +328,14 @@
 				8C387452236F409D00131D3A /* ServerManagerExtensions.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		8CD39E2323749F5000BDC044 /* CellModel */ = {
+			isa = PBXGroup;
+			children = (
+				8CD39E2423749F7300BDC044 /* StoryCellModel.swift */,
+			);
+			path = CellModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,6 +484,7 @@
 				8CBFFEC9236F17BE0095B73A /* TopStoriesViewController.swift in Sources */,
 				8CD39E20237496BB00BDC044 /* StoryBrowserDisplay.swift in Sources */,
 				8C58D234237351DC00AF5E84 /* UIStoryboard+Creation.swift in Sources */,
+				8CD39E272374A0D400BDC044 /* StoryCellModelsFactory.swift in Sources */,
 				8C58D2432373831400AF5E84 /* StoryBrowserViewController.swift in Sources */,
 				8C38744F236F3DD700131D3A /* TopStoriesResult.swift in Sources */,
 				8C3184852370D9DF00FD35EE /* TopStoriesDisplay.swift in Sources */,
@@ -482,6 +497,7 @@
 				8C58D23B237356B300AF5E84 /* TopStoriesDetailsDisplay.swift in Sources */,
 				8CD39E1C2374941F00BDC044 /* TopStoriesDescriptor.swift in Sources */,
 				8C387456236F410600131D3A /* Constants.swift in Sources */,
+				8CD39E2523749F7300BDC044 /* StoryCellModel.swift in Sources */,
 				8C58D23D23735A1200AF5E84 /* Shadows.swift in Sources */,
 				8C50520A23719EF40097E9A2 /* StoriesTableViewCell.swift in Sources */,
 			);

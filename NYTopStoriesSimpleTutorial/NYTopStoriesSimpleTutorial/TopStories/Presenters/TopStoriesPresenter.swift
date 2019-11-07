@@ -15,13 +15,17 @@ class TopStoriesPresenter {
     private var manager: TopStoriesDataManageable?
     private var listDataProvider: TopStoriesListDataProvider?
     private let descriptor: TopStoriesDescriptive
+    private let cellModelsFactory: StoryCellModelsBuilder
     
     init(for display: TopStoriesDisplay,
          serverManager: ServerManager = ServerManager(),
-         descriptor: TopStoriesDescriptive = TopStoriesDescriptor()) {
+         descriptor: TopStoriesDescriptive = TopStoriesDescriptor(),
+         cellModelsFactory: StoryCellModelsBuilder = StoryCellModelsFactory()) {
+        
         self.display = display
         self.serverManager = serverManager
         self.descriptor = descriptor
+        self.cellModelsFactory = cellModelsFactory
         self.display?.setNavigationTitle(descriptor.topStroiesListNavigationTitle())
         fetchTopStories()
     }
@@ -56,11 +60,13 @@ class TopStoriesPresenter {
     
     private func createListDataProvider(with dataManager: TopStoriesDataManageable?) {
         
-        guard let dataManager = dataManager else {
+        guard
+            let dataManager = dataManager,
+            let cellModels = cellModelsFactory.buildStoryCellModels(with: dataManager)else {
             return
         }
         
-        listDataProvider = TopStoriesListDataProvider(dataManager: dataManager, onSelection: { [weak self] (index) in
+        listDataProvider = TopStoriesListDataProvider(storyCellModels: cellModels, onSelection: { [weak self] (index) in
             
             guard let story = dataManager.story(at: index) else {
                 return

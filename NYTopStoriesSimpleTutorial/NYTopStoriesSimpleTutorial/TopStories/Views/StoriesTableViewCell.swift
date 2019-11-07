@@ -19,28 +19,31 @@ class StoriesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setupUI()
+    }
+    
+    private func setupUI() {
         containerView.layer.cornerRadius = 4
         containerView.layer.borderColor = UIColor.black.cgColor
         containerView.layer.borderWidth = 0.7
-        self.storyImageView.layer.cornerRadius = 4
+        storyImageView.layer.cornerRadius = 4
         Shadows.setupShadowFor(containerView)
-        
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         diposable?.dispose()
-        self.storyImageView.image = Asset.placeholder.image
+        storyImageView.image = Asset.placeholder.image
     }
     
-    func configure(with story: TopStoriesResult) {
-        titleLabel.text = story.title
-        authorLabel.text = story.byline
-        guard
-            let urlString = story.multimedia.first(where: { $0.formatType == .standard })?.url,
-            let imageURL = URL(string: urlString) else {
+    func configure(with cellModel: StoryCellModel) {
+        titleLabel.text = cellModel.title
+        authorLabel.text = cellModel.byline
+        guard let imageURL = cellModel.thumbnailURL else {
             return
         }
+        
         diposable = ImageDownloader().downloadImageWith(url: imageURL, placeholder:Asset.placeholder.image, imageView: storyImageView)
     }
     

@@ -12,29 +12,24 @@ typealias TopStoriesListOnSelectionHandler = ((Int) -> Void)
 
 class TopStoriesListDataProvider: NSObject, UITableViewDataSource {
     
-    private let dataManager: TopStoriesDataManageable
+    private let storyCellModels: [StoryCellModel]
     private let onSelection: TopStoriesListOnSelectionHandler?
     
-    init(dataManager: TopStoriesDataManageable,
+    init(storyCellModels: [StoryCellModel],
          onSelection: TopStoriesListOnSelectionHandler? = nil) {
-        self.dataManager = dataManager
+        self.storyCellModels = storyCellModels
         self.onSelection = onSelection
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataManager.storiesCount
+        return storyCellModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.nyDequeueReusableCell(for: indexPath, cellType: StoriesTableViewCell.self)
         
-        
-        guard let story = self.dataManager.story(at: indexPath.row) else {
-            return UITableViewCell()
-        }
-        
-        cell.configure(with: story)
+        cell.configure(with: storyCellModels[indexPath.row])
         
         return cell
     }
