@@ -34,8 +34,7 @@ class TopStoriesPresenter {
     private func fetchTopStories() {
         self.display?.startLoader()
         serverManager.getTopStories()
-        serverManager.didFinish =
-            { [weak self] json in
+        serverManager.didFinish = { [weak self] json in
                 self?.display?.stopLoader()
                 guard let obj = json as? TopStories else {
                     return
@@ -56,7 +55,7 @@ class TopStoriesPresenter {
     private func createDataManager(with topStoriesObj: TopStories) {
         
         self.manager = TopStoriesDataManager()
-        topStoriesObj.results.forEach{self.manager?.add($0)}
+        topStoriesObj.results?.forEach{self.manager?.add($0)}
         self.createListDataProvider(with: self.manager)
     }
     

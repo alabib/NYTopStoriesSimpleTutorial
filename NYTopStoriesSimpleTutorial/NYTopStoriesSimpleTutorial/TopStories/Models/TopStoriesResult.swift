@@ -10,23 +10,24 @@ import Foundation
 
 struct TopStoriesResult: Equatable {
     
-    var abstractField : String
-    var byline : String
-    var createdDate : String
-    var desFacet : [String]
-    var itemType : String
-    var kicker : String
-    var materialTypeFacet : String
-    var multimedia : [TopStoriesMultimedia]
-    var orgFacet : [String]
-    var perFacet : [String]
-    var publishedDate : String
-    var section : String
-    var shortUrl : String
-    var subsection : String
-    var title : String
-    var updatedDate : String
-    var url : String
+    let abstractField : String?
+    let byline : String?
+    let createdDate : String?
+    let desFacet : [String]?
+    let geoFacet : [String]?
+    let itemType : String?
+    let kicker : String?
+    let materialTypeFacet : String?
+    let multimedia : [TopStoriesMultimedia]?
+    let orgFacet : [String]?
+    let perFacet : [String]?
+    let publishedDate : String?
+    let section : String?
+    let shortUrl : String?
+    let subsection : String?
+    let title : String?
+    let updatedDate : String?
+    let url : String?
 }
 
 
@@ -37,6 +38,7 @@ extension TopStoriesResult: Codable {
         case byline = "byline"
         case createdDate = "created_date"
         case desFacet = "des_facet"
+        case geoFacet = "geo_facet"
         case itemType = "item_type"
         case kicker = "kicker"
         case materialTypeFacet = "material_type_facet"
@@ -54,22 +56,23 @@ extension TopStoriesResult: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        abstractField = try values.decode(String.self, forKey: .abstractField)
-        byline = try values.decode(String.self, forKey: .byline)
-        createdDate = try values.decode(String.self, forKey: .createdDate)
-        desFacet = try values.decode([String].self, forKey: .desFacet)
-        itemType = try values.decode(String.self, forKey: .itemType)
-        kicker = try values.decode(String.self, forKey: .kicker)
-        materialTypeFacet = try values.decode(String.self, forKey: .materialTypeFacet)
-        multimedia = try values.decode([TopStoriesMultimedia].self, forKey: .multimedia)
-        orgFacet = try values.decode([String].self, forKey: .orgFacet)
-        perFacet = try values.decode([String].self, forKey: .perFacet)
-        publishedDate = try values.decode(String.self, forKey: .publishedDate)
-        section = try values.decode(String.self, forKey: .section)
-        shortUrl = try values.decode(String.self, forKey: .shortUrl)
-        subsection = try values.decode(String.self, forKey: .subsection)
-        title = try values.decode(String.self, forKey: .title)
-        updatedDate = try values.decode(String.self, forKey: .updatedDate)
-        url = try values.decode(String.self, forKey: .url)
+        abstractField = try values.decodeIfPresent(String.self, forKey: .abstractField)
+        byline = try values.decodeIfPresent(String.self, forKey: .byline)
+        createdDate = try values.decodeIfPresent(String.self, forKey: .createdDate)
+        desFacet = try values.decodeIfPresent([String].self, forKey: .desFacet)
+        geoFacet = try values.decodeIfPresent([String].self, forKey: .geoFacet)
+        itemType = try values.decodeIfPresent(String.self, forKey: .itemType)
+        kicker = try values.decodeIfPresent(String.self, forKey: .kicker)
+        materialTypeFacet = try values.decodeIfPresent(String.self, forKey: .materialTypeFacet)
+        multimedia = try values.decodeIfPresent([TopStoriesMultimedia].self, forKey: .multimedia)
+        orgFacet = try values.decodeIfPresent([String].self, forKey: .orgFacet)
+        perFacet = try values.decodeIfPresent([String].self, forKey: .perFacet)
+        publishedDate = try values.decodeIfPresent(String.self, forKey: .publishedDate)
+        section = try values.decodeIfPresent(String.self, forKey: .section)
+        shortUrl = try values.decodeIfPresent(String.self, forKey: .shortUrl)
+        subsection = try values.decodeIfPresent(String.self, forKey: .subsection)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
+        updatedDate = try values.decodeIfPresent(String.self, forKey: .updatedDate)
+        url = try values.decodeIfPresent(String.self, forKey: .url)
     }
 }

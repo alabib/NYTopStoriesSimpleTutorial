@@ -18,20 +18,23 @@ struct TopStoriesMultimedia: Equatable {
         case superJumbo = "superJumbo"
         case none
         
-        static func formateType(_ string: String) -> ImageFormatType {
-            return ImageFormatType(rawValue: string) ?? .none
+        static func formateType(_ string: String?) -> ImageFormatType {
+            guard let formatString = string else {
+                return .none
+            }
+            return ImageFormatType(rawValue: formatString) ?? .none
         }
     }
     
-    var caption : String
-    var copyright : String
-    var format : String
+    let caption : String?
+    let copyright : String?
+    let format : String?
     var formatType : ImageFormatType
-    var height : Int
-    var subtype : String
-    var type : String
-    var url : String
-    var width : Int
+    let height : Int?
+    let subtype : String?
+    let type : String?
+    let url : String?
+    let width : Int?
 
 }
 
@@ -47,17 +50,16 @@ extension TopStoriesMultimedia: Codable {
         case url = "url"
         case width = "width"
     }
-    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        caption = try values.decode(String.self, forKey: .caption)
-        copyright = try values.decode(String.self, forKey: .copyright)
-        format = try values.decode(String.self, forKey: .format)
-        height = try values.decode(Int.self, forKey: .height)
-        subtype = try values.decode(String.self, forKey: .subtype)
-        type = try values.decode(String.self, forKey: .type)
-        url = try values.decode(String.self, forKey: .url)
-        width = try values.decode(Int.self, forKey: .width)
+        caption = try values.decodeIfPresent(String.self, forKey: .caption)
+        copyright = try values.decodeIfPresent(String.self, forKey: .copyright)
+        format = try values.decodeIfPresent(String.self, forKey: .format)
+        height = try values.decodeIfPresent(Int.self, forKey: .height)
+        subtype = try values.decodeIfPresent(String.self, forKey: .subtype)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        url = try values.decodeIfPresent(String.self, forKey: .url)
+        width = try values.decodeIfPresent(Int.self, forKey: .width)
         formatType = ImageFormatType.formateType(format)
     }
 }

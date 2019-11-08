@@ -9,8 +9,6 @@
 import XCTest
 @testable import NYTopStoriesSimpleTutorial
 
-//TODO: Add testing cases to the rest of the class but this a sample of testing because I had business trip this week so I couldn't finish the rest of the testiong
-
 class TopStoriesPresenterTests: XCTestCase {
     
     var display: MockDisplay!
@@ -46,31 +44,7 @@ class TopStoriesPresenterTests: XCTestCase {
     
     func testPresenter_SetsStory() {
         
-        let expectedStory = TopStoriesResult(abstractField: "abstractField",
-                                             byline: "byline",
-                                             createdDate: "createdDate",
-                                             desFacet: ["desFacet"],
-                                             itemType: "itemType",
-                                             kicker: "kicker",
-                                             materialTypeFacet: "materialTypeFacet",
-                                             multimedia: [TopStoriesMultimedia(caption: "caption",
-                                                                               copyright: "copyright",
-                                                                               format: "format",
-                                                                               formatType: .normal,
-                                                                               height: 1,
-                                                                               subtype: "subtype",
-                                                                               type: "type",
-                                                                               url: "url",
-                                                                               width: 1)],
-                                             orgFacet: ["orgFacet"],
-                                             perFacet: ["perFacet"],
-                                             publishedDate: "publishedDate",
-                                             section: "section",
-                                             shortUrl: "section",
-                                             subsection: "subsection",
-                                             title: "title",
-                                             updatedDate: "updatedDate",
-                                             url: "url")
+        let expectedStory = createTopStoriesResultObjectWith()
         
         display.story = expectedStory
         display.storyHandler = { story in
@@ -147,31 +121,8 @@ class TopStoriesPresenterTests: XCTestCase {
         cellfactory.storyCellModels = expectedStoryCellModels
         
         let dataManager = MockDataManager()
-        dataManager.stories = [TopStoriesResult(abstractField: "abstractField",
-                                                byline: expectedByline,
-                                                createdDate: "createdDate",
-                                                desFacet: ["desFacet"],
-                                                itemType: "itemType",
-                                                kicker: "kicker",
-                                                materialTypeFacet: "materialTypeFacet",
-                                                multimedia: [TopStoriesMultimedia(caption: "caption",
-                                                                                  copyright: "copyright",
-                                                                                  format: "format",
-                                                                                  formatType: .standard,
-                                                                                  height: 1,
-                                                                                  subtype: "subtype",
-                                                                                  type: "type",
-                                                                                  url: expectedURL,
-                                                                                  width: 1)],
-                                                orgFacet: ["orgFacet"],
-                                                perFacet: ["perFacet"],
-                                                publishedDate: "publishedDate",
-                                                section: "section",
-                                                shortUrl: "section",
-                                                subsection: "subsection",
-                                                title: expectedTitle,
-                                                updatedDate: "updatedDate",
-                                                url: "url")]
+        let story = createTopStoriesResultObjectWith(byline: expectedByline, url: expectedURL, title: expectedTitle)
+        dataManager.stories = [story]
         let actualStoryCellModels = cellfactory.buildStoryCellModels(with: dataManager)
         
         
@@ -299,7 +250,7 @@ extension TopStoriesPresenterTests {
             return stories?.count ?? 0
         }
         
-        func add(_ story: TopStoriesResult) {
+        func add(_ story: TopStoriesResult?) {
             
         }
         
@@ -311,7 +262,41 @@ extension TopStoriesPresenterTests {
     }
 }
 
+// MARK: - Helper Mthods
+
 extension TopStoriesPresenterTests {
+    
+    private func createTopStoriesResultObjectWith(byline: String = "byline",
+                                                  url: String = "url",
+                                                  title: String = "title") -> TopStoriesResult {
+        return TopStoriesResult(abstractField: "abstractField",
+                                byline: byline,
+                                createdDate: "createdDate",
+                                desFacet: ["desFacet"],
+                                geoFacet: ["geoFacet"],
+                                itemType: "itemType",
+                                kicker: "kicker",
+                                materialTypeFacet: "materialTypeFacet",
+                                multimedia: [TopStoriesMultimedia(caption: "caption",
+                                                                  copyright: "copyright",
+                                                                  format: "format",
+                                                                  formatType: .standard,
+                                                                  height: 1,
+                                                                  subtype: "subtype",
+                                                                  type: "type",
+                                                                  url: url,
+                                                                  width: 1)],
+                                orgFacet: ["orgFacet"],
+                                perFacet: ["perFacet"],
+                                publishedDate: "publishedDate",
+                                section: "section",
+                                shortUrl: "section",
+                                subsection: "subsection",
+                                title: title,
+                                updatedDate: "updatedDate",
+                                url: "url")
+    }
+    
     private func jsonString() -> String {
         return """
         {

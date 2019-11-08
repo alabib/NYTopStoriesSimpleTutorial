@@ -38,6 +38,7 @@ class TopStoriesDetailsViewController: UIViewController {
         Shadows.setupShadowFor(seeMoreButton)
     }
     
+    //TODO: Add this funcionality to the presenter
     @IBAction func seeMoreButtonHandler(_ sender: Any) {
         guard let urlString = story?.url,
         let url = URL(string: urlString) else {

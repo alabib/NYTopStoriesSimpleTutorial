@@ -10,7 +10,7 @@ import Foundation
 
 protocol TopStoriesDataManageable {
     var storiesCount: Int { get }
-    func add(_ story: TopStoriesResult)
+    func add(_ story: TopStoriesResult?)
     func story(at index: Int) -> TopStoriesResult?
 }
 
@@ -22,10 +22,13 @@ class TopStoriesDataManager: TopStoriesDataManageable {
         return topStories.count
     }
     
-    func add(_ story: TopStoriesResult) {
-        if !topStories.contains(story) {
-            topStories.append(story)
+    func add(_ story: TopStoriesResult?) {
+        guard
+            let story = story,
+            topStories.contains(story) == false else {
+            return
         }
+        topStories.append(story)
     }
     
     func story(at index: Int) -> TopStoriesResult? {

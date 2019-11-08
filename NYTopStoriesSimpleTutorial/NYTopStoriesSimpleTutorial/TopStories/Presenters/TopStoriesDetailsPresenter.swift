@@ -29,7 +29,7 @@ class TopStoriesDetailsPresenter {
         self.display?.setDescriptionLabel(with: story?.abstractField ?? "")
         
         guard
-            let urlString = story?.multimedia.first(where: { $0.formatType == .superJumbo })?.url,
+            let urlString = story?.multimedia?.first(where: { $0.formatType == .superJumbo })?.url,
             let imageURL = URL(string: urlString) else {
                 return
         }

@@ -10,12 +10,12 @@ import Foundation
 
 struct TopStories: Equatable {
     
-    var copyright : String
-    var lastUpdated : String
-    var numResults : Int
-    var results : [TopStoriesResult]
-    var section : String
-    var status : String
+    let copyright : String?
+    let lastUpdated : String?
+    let numResults : Int?
+    let results : [TopStoriesResult]?
+    let section : String?
+    let status : String?
     
 }
 
@@ -33,11 +33,11 @@ extension TopStories: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        copyright = try values.decode(String.self, forKey: .copyright)
-        lastUpdated = try values.decode(String.self, forKey: .lastUpdated)
-        numResults = try values.decode(Int.self, forKey: .numResults)
-        results = try values.decode([TopStoriesResult].self, forKey: .results)
-        section = try values.decode(String.self, forKey: .section)
-        status = try values.decode(String.self, forKey: .status)
+        copyright = try values.decodeIfPresent(String.self, forKey: .copyright)
+        lastUpdated = try values.decodeIfPresent(String.self, forKey: .lastUpdated)
+        numResults = try values.decodeIfPresent(Int.self, forKey: .numResults)
+        results = try values.decodeIfPresent([TopStoriesResult].self, forKey: .results)
+        section = try values.decodeIfPresent(String.self, forKey: .section)
+        status = try values.decodeIfPresent(String.self, forKey: .status)
     }
 }

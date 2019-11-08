@@ -16,10 +16,11 @@ extension ServerManager
     {
         httpConnect(resource: TopStories.resourceForTopStories(), completion:
             { (json) in
-                if let jsonObject = json
-                {
-                    self.didFinish?(jsonObject as AnyObject?)
+                guard let jsonObject = json else {
+                    self.didFinishWithError?(.dataEmptyError, nil)
+                    return
                 }
+                self.didFinish?(jsonObject as AnyObject?)
         })
         { (error, msg) in
             self.didFinishWithError?(error, msg)

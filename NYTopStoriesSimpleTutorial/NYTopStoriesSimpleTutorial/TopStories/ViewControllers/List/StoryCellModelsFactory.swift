@@ -26,8 +26,8 @@ class StoryCellModelsFactory: StoryCellModelsBuilder {
             guard let story = dataManager.story(at: index) else {
                 continue
             }
-            cellModel = StoryCellModel(title: story.title,
-                                         byline: story.byline,
+            cellModel = StoryCellModel(title: story.title ?? "",
+                                         byline: story.byline ?? "",
                                          thumbnailURL: getThumbnailURL(from: story))
             storyCellModels.append(cellModel)
         }
@@ -37,7 +37,7 @@ class StoryCellModelsFactory: StoryCellModelsBuilder {
     
     private func getThumbnailURL(from story: TopStoriesResult) -> URL? {
         guard
-            let urlString = story.multimedia.first(where: { $0.formatType == .standard })?.url,
+            let urlString = story.multimedia?.first(where: { $0.formatType == .standard })?.url,
             let imageURL = URL(string: urlString) else {
                 return nil
         }
