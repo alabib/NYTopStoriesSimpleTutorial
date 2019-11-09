@@ -10,7 +10,7 @@ import UIKit
 
 class TopStoriesPresenter {
     
-    private let serverManager: ServerManager
+    private var serverManager: ServerManageable
     private weak var display: TopStoriesDisplay?
     private var manager: TopStoriesDataManageable?
     private var listDataProvider: TopStoriesListDataProvider?
@@ -18,7 +18,7 @@ class TopStoriesPresenter {
     private let cellModelsFactory: StoryCellModelsBuilder
     
     init(for display: TopStoriesDisplay,
-         serverManager: ServerManager = ServerManager(),
+         serverManager: ServerManageable = ServerManager(),
          descriptor: TopStoriesDescriptive = TopStoriesDescriptor(),
          cellModelsFactory: StoryCellModelsBuilder = StoryCellModelsFactory()) {
         
@@ -63,7 +63,7 @@ class TopStoriesPresenter {
         
         guard
             let dataManager = dataManager,
-            let cellModels = cellModelsFactory.buildStoryCellModels(with: dataManager)else {
+            let cellModels = cellModelsFactory.buildStoryCellModels(with: dataManager) else {
             return
         }
         

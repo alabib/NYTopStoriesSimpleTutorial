@@ -25,6 +25,7 @@ class StoryBrowserPresenter {
         self.descriptor = descriptor
         self.display?.setNavigationTitle(descriptor.storyBrowserNavigationTitle())
         self.display?.addUIElements()
+        createWebViewDelegate()
         self.display?.loadWebView(with: URLRequest(url: url))
     }
     

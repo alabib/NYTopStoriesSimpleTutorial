@@ -11,19 +11,25 @@ import XCTest
 
 class TopStoriesPresenterTests: XCTestCase {
     
-    var display: MockDisplay!
-    var serverManager: ServerManager!
-    var cellfactory: MockCellFactory!
+    private var subject: TopStoriesPresenter?
+    private var display: MockDisplay!
+    private var serverManager: ServerManageable!
+    private var cellfactory: MockCellFactory!
     
     override func setUp() {
+    
         super.setUp()
         display = MockDisplay()
-        let error = NSError(domain: "SomeError",
-                            code: 1234,
-                            userInfo: nil)
         let jsonData = jsonString().data(using: .utf8)
-        serverManager = ServerManager(session: MockURLSession(data: jsonData, urlResponse: nil, error: error))
+        serverManager = MockServerManager(session: MockURLSession(data: jsonData, urlResponse: nil, error: nil))
         cellfactory = MockCellFactory()
+    }
+    
+    override func tearDown() {
+        subject = nil
+        display = nil
+        serverManager = nil
+        cellfactory = nil
     }
     
     
@@ -36,7 +42,7 @@ class TopStoriesPresenterTests: XCTestCase {
         }
         
         
-        _ = TopStoriesPresenter(for: display,
+        subject = TopStoriesPresenter(for: display,
                                           serverManager: serverManager,
                                           descriptor: TopStoriesDescriptor(),
                                           cellModelsFactory: cellfactory)
@@ -52,7 +58,7 @@ class TopStoriesPresenterTests: XCTestCase {
         }
         
         
-        _ = TopStoriesPresenter(for: display,
+        subject = TopStoriesPresenter(for: display,
                                 serverManager: serverManager,
                                 descriptor: TopStoriesDescriptor(),
                                 cellModelsFactory: cellfactory)
@@ -65,15 +71,23 @@ class TopStoriesPresenterTests: XCTestCase {
                                                                                                    thumbnailURL: URL(string: "url"))])
         
         display.listDataProvider = expectedListDataProvider
+        
+        let setlistDataProviderExpectation = expectation(description: "listDataProviderHandler is not set")
         display.listDataProviderHandler = { listDataProvider in
-            XCTAssertEqual(listDataProvider, expectedListDataProvider)
+            XCTAssertTrue(listDataProvider === expectedListDataProvider)
+            setlistDataProviderExpectation.fulfill()
         }
         
+        let storyCellModels = [StoryCellModel(title: "title",
+                                                      byline: "byline",
+                                                      thumbnailURL: URL(string: "url"))]
         
-        _ = TopStoriesPresenter(for: display,
+        cellfactory.storyCellModels = storyCellModels
+        subject = TopStoriesPresenter(for: display,
                                 serverManager: serverManager,
                                 descriptor: TopStoriesDescriptor(),
                                 cellModelsFactory: cellfactory)
+        waitForExpectations(timeout: 1.0, handler: nil)
     }
     
     func testPresenter_StartsLoader() {
@@ -86,7 +100,7 @@ class TopStoriesPresenterTests: XCTestCase {
         }
         
         
-        _ = TopStoriesPresenter(for: display,
+        subject = TopStoriesPresenter(for: display,
                                 serverManager: serverManager,
                                 descriptor: TopStoriesDescriptor(),
                                 cellModelsFactory: cellfactory)
@@ -102,7 +116,7 @@ class TopStoriesPresenterTests: XCTestCase {
         }
         
         
-        _ = TopStoriesPresenter(for: display,
+        subject = TopStoriesPresenter(for: display,
                                 serverManager: serverManager,
                                 descriptor: TopStoriesDescriptor(),
                                 cellModelsFactory: cellfactory)
@@ -126,7 +140,7 @@ class TopStoriesPresenterTests: XCTestCase {
         let actualStoryCellModels = cellfactory.buildStoryCellModels(with: dataManager)
         
         
-        _ = TopStoriesPresenter(for: display,
+        subject = TopStoriesPresenter(for: display,
                                 serverManager: serverManager,
                                 descriptor: TopStoriesDescriptor(),
                                 cellModelsFactory: cellfactory)
@@ -137,19 +151,70 @@ class TopStoriesPresenterTests: XCTestCase {
 }
 
 // MARK: - Mocks
-extension TopStoriesPresenterTests {
+private extension TopStoriesPresenterTests {
+    
+    class MockServerManager: ServerManageable {
+        
+        private var session: SessionProtocol
+        
+        init(session: SessionProtocol) {
+            self.session = session
+        }
+        
+        var didFinish: TopStoriesPresenterTests.MockServerManager.DidFinishDelegate?
+        
+        var didFinishWithError: TopStoriesPresenterTests.MockServerManager.DidFinishWithErrorDelegate?
+        
+        func httpConnect<A>(resource: Resource<A>, completion: @escaping (Any?) -> (), errorHandler: @escaping (WebserviceError, Any?) -> ()) {
+            
+            guard let url = URL(string: "URL") else {
+                return
+            }
+            
+            session.dataTask(with: url) { (data, response, error) in
+                
+                guard error == nil else {
+                    errorHandler(.responseError, error)
+                    return
+                    
+                }
+                guard let data = data else {
+                    errorHandler(.dataEmptyError, nil)
+                    return
+                }
+                
+                let result = resource.parse(data)
+                
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+                
+                }.resume()
+        }
+        
+        
+        func getTopStories()
+        {
+            httpConnect(resource: TopStories.resourceForTopStories(), completion:
+                { (json) in
+                    guard let jsonObject = json else {
+                        self.didFinishWithError?(.dataEmptyError, nil)
+                        return
+                    }
+                    self.didFinish?(jsonObject as AnyObject?)
+            })
+            { (error, msg) in
+                self.didFinishWithError?(error, msg)
+            }
+        }
+        
+    }
     
     class MockURLSession: SessionProtocol {
         
         
         var url: URL?
         private let dataTask: MockTask
-        
-        var urlComponents: URLComponents? {
-            guard let url = url else { return nil }
-            return URLComponents(url: url,
-                                 resolvingAgainstBaseURL: true)
-        }
         
         init(data: Data?, urlResponse: URLResponse?, error: Error?) {
             dataTask = MockTask(data: data,
@@ -217,7 +282,7 @@ extension TopStoriesPresenterTests {
         }
         
         func setTableDelegateAndDatasource(with listDataProvider: TopStoriesListDataProvider) {
-            listDataProviderHandler?(listDataProvider)
+            listDataProviderHandler?(self.listDataProvider)
         }
         
         func navigateToDetails(with story: TopStoriesResult) {

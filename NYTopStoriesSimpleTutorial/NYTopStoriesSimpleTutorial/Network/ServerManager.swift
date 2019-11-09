@@ -21,10 +21,18 @@ struct Resource<A>
     let parse: (Any) -> A?
 }
 
-class ServerManager {
-    
+protocol ServerManageable {
     typealias DidFinishDelegate = (AnyObject?) -> ()
     typealias DidFinishWithErrorDelegate = (WebserviceError, Any?) -> ()
+    
+    var didFinish: DidFinishDelegate? { get set }
+    var didFinishWithError: DidFinishWithErrorDelegate? { get set }
+    func httpConnect<A>(resource:Resource<A>, completion: @escaping (Any?) -> (), errorHandler: @escaping (WebserviceError, Any?) -> ())
+    
+    func getTopStories()
+}
+
+class ServerManager: ServerManageable {
     
     private var session: SessionProtocol
     
